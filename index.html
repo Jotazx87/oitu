@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feliz 8 Meses de Duo!</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #1a0b2e 0%, #3b185f 100%);
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      overflow-x: hidden;
+      color: #2b2d42;
+    }
+
+    /* Confetes */
+    .confetti {
+      position: fixed;
+      top: -15px;
+      width: 10px;
+      height: 10px;
+      z-index: 9999;
+      pointer-events: none;
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(105vh) rotate(720deg);
+      }
+    }
+
+    /* Tela Inicial (Envelope) */
+    #intro-box {
+      background: rgba(255, 255, 255, 0.12);
+      border: 2px solid rgba(255, 255, 255, 0.25);
+      border-radius: 24px;
+      padding: 40px 28px;
+      text-align: center;
+      color: #ffffff;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .badge-live {
+      display: inline-block;
+      background: #ff0040;
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 0.8rem;
+      padding: 6px 14px;
+      border-radius: 50px;
+      letter-spacing: 1px;
+      margin-bottom: 18px;
+    }
+
+    .intro-icon {
+      font-size: 4rem;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .intro-title {
+      font-size: 1.9rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      color: #fee440;
+    }
+
+    .intro-sub {
+      font-size: 1rem;
+      opacity: 0.92;
+      margin-bottom: 26px;
+      line-height: 1.5;
+    }
+
+    .open-btn {
+      background: linear-gradient(45deg, #ff477e, #9b5de5);
+      color: #ffffff;
+      border: none;
+      padding: 16px 34px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(255, 71, 126, 0.45);
+      transition: transform 0.2s;
+    }
+
+    .open-btn:active {
+      transform: scale(0.96);
+    }
+
+    /* Cartinha Aberta */
+    #letter-container {
+      display: none;
+      background: #fff9fb;
+      max-width: 680px;
+      width: 100%;
+      border-radius: 26px;
+      padding: 36px 30px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55);
+      border: 4px solid #fee440;
+    }
+
+    .bunting {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+    }
+
+    .flag {
+      width: 0;
+      height: 0;
+      border-left: 12px solid transparent;
+      border-right: 12px solid transparent;
+      border-top: 20px solid #ff477e;
+    }
+    .flag:nth-child(2n) { border-top-color: #00bbf9; }
+    .flag:nth-child(3n) { border-top-color: #fee440; }
+    .flag:nth-child(4n) { border-top-color: #9b5de5; }
+
+    .header-card {
+      text-align: center;
+      margin-bottom: 26px;
+      border-bottom: 2px dashed #e0c3fc;
+      padding-bottom: 18px;
+    }
+
+    .cake-emoji {
+      font-size: 2.8rem;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .header-card h1 {
+      color: #9b5de5;
+      font-size: 1.9rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .header-card span {
+      display: inline-block;
+      margin-top: 8px;
+      background: #f3e8ff;
+      color: #ff477e;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 0.88rem;
+    }
+
+    .letter-body {
+      font-size: 1.05rem;
+      line-height: 1.72;
+      font-weight: 500;
+    }
+
+    .letter-body p {
+      margin-bottom: 16px;
+    }
+
+    .highlight {
+      background: rgba(254, 228, 64, 0.55);
+      padding: 2px 6px;
+      border-radius: 6px;
+      color: #1a0b2e;
+      font-weight: 700;
+    }
+
+    .shoutout-box {
+      background: linear-gradient(135deg, #f3e8ff, #ffe5ec);
+      border-left: 5px solid #ff477e;
+      padding: 16px 20px;
+      border-radius: 14px;
+      margin: 20px 0;
+      font-weight: 600;
+      color: #5a189a;
+    }
+
+    .code-quote {
+      background: #f1f3f5;
+      border: 2px dashed #adb5bd;
+      border-radius: 14px;
+      padding: 14px 18px;
+      margin: 18px 0;
+      font-size: 0.98rem;
+      color: #343a40;
+      font-weight: 600;
+    }
+
+    .footer-sign {
+      text-align: center;
+      margin-top: 28px;
+      padding-top: 18px;
+      border-top: 2px dashed #e0c3fc;
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: #ff477e;
+      line-height: 1.5;
+    }
+
+    .replay-btn {
+      display: block;
+      margin: 20px auto 0;
+      background: transparent;
+      border: 2px solid #9b5de5;
+      color: #9b5de5;
+      padding: 9px 22px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .replay-btn:hover {
+      background: #9b5de5;
+      color: #ffffff;
+    }
+
+    @media (max-width: 500px) {
+      #letter-container { padding: 26px 18px; }
+      .header-card h1 { font-size: 1.55rem; }
+      .letter-body { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="intro-box">
+    <div class="badge-live">🔴 ESPECIAL DE 8 MESES</div>
+    <span class="intro-icon">🎂🎁</span>
+    <div class="intro-title">Duozonaaaaa!</div>
+    <p class="intro-sub">Fiz um codiguinho especial pra comemorar nossos 8 meses de amizade e duo! Clica aí pra abrir 👇</p>
+    <button type="button" class="open-btn" id="btn-abrir">Abrir Cartinha 🎉</button>
+  </div>
+
+  <div id="letter-container">
+    <div class="bunting">
+      <div class="flag"></div><div class="flag"></div><div class="flag"></div>
+      <div class="flag"></div><div class="flag"></div><div class="flag"></div>
+      <div class="flag"></div><div class="flag"></div><div class="flag"></div>
+      <div class="flag"></div>
+    </div>
+
+    <div class="header-card">
+      <span class="cake-emoji">🎂🎮💜</span>
+      <h1>Feliz 8 Meses de Duo!</h1>
+      <span>✨ Edição Especial: Top 1 de Tudo ✨</span>
+    </div>
+
+    <div class="letter-body">
+      <p><span class="highlight">duozonaaaaa, 8 meses ja de duooo… 8 meses de amizadeeee</span> eu acho ate q ja te falei q teve uma live q ce falou q eu era deu melhor amigo kkkkk fiquei mto felizzzz ce num tem ideia duoo. Bom essa cartinha vai ser so pra te falar o quanto gosto da nossa amizade duo… uma coisa pss te garantir se depender de mim essa amizade dura pra sempre… acho q ja te falei uma vez mas eu num consigo mais imagina 1 dia sem nossas callzinhas de duoo kkkkk poo meu dia fica tao feliz passando o dia todo em call cntg duozonaaa. nesses 8 meses eu te estressei bastante muito mesmooo mas eu acho q sabe o tanto q gosto de tu duozona</p>
+
+      <p>to doido pra jogar com tu duo :( mto ruim ficar sem jogar nada cntg kkkkkkk</p>
+
+      <p>minha duo tu sabia q gosto mto de fazer essas cartinhas? kkkkkk bom vamo voltar o focooo</p>
+
+      <div class="shoutout-box">
+        cara pss te falar q sao os 8 meses mais perfeitos da minha vida duozona, serio a melhor coisa q aconteceu na minha vida foi conhecer vc e tornar nosso duo numa amizade forte e feliz… outra coisa duo, tamo comecando nas lives tamo indo bemm e quero q saiba q sua live anima meu dia e me faz sorrir sempre ta? e lembra q onde vc tiver fazendo live eu vou estar la pra te apoiar e pra te elogiar sempre duo 💜
+      </div>
+
+      <p>Eu gosto dms de falar q vc é a melhor kkkkk num sei se acha chato (acho q naum) mas eu gosto muitaoooo e ja vou avisando q <span class="highlight">o presentinho vai ser livepix taaa?</span> quero q saiba tbb q vc realmente é a melhor do mundo em tudo q vc faz na vida duo, seja live, musica, jogando… tudo q vc faz vc vira a melhor nisso (naum sei como vc consegue fazer isso kkkk mas vc é a melhor todos os dias)</p>
+
+      <p>Ja falei isso pra vc mas pra deixar claro q meu maior medo é perder sua amizade e sua companhia… vc nn tem ideia do quão importante vc virou na minha vida duozona apesar dos estresses q faco vc passar meu maior medo é esses. eu sei q nn tem outra pessoa igual vc no mundo…</p>
+
+      <div class="code-quote">
+        💻 vc naum sabeee mas sempre q vou fazer um codiguinho sabe oq penso??? Penso “po, sera q a duda vai gostar desse jeito?” kkkkkkkk
+      </div>
+
+      <p>duozona, nessa viagem num esquece nem um segundo q vc é a melhorzona do mundo pra mim taaaa?</p>
+
+      <p>é isso duo… nunca deixa ngm pegar meu cargo de top 1 ta baumm? e so pra te falar vc tb é minha top 1 de tudu taaa?</p>
+    </div>
+
+    <div class="footer-sign">
+      Espero q tenha gostado… Fiz com mto carinho duozonaaa se exagerei nos elogios me perdoa taaa? Tu é a melhorrrr 🫶
+    </div>
+
+    <button type="button" class="replay-btn" id="btn-confete">Jogar mais confete! 🎊</button>
+  </div>
+
+  <script>
+    function soltarConfete() {
+      const cores = ['#ff477e', '#9b5de5', '#fee440', '#00bbf9', '#00f5d4'];
+      for (let i = 0; i < 80; i++) {
+        const confete = document.createElement('div');
+        confete.className = 'confetti';
+        confete.style.left = Math.random() * 100 + 'vw';
+        confete.style.backgroundColor = cores[Math.floor(Math.random() * cores.length)];
+        confete.style.animationDuration = (Math.random() * 2 + 2) + 's';
+        confete.style.opacity = Math.random();
+        document.body.appendChild(confete);
+
+        setTimeout(() => {
+          confete.remove();
+        }, 4000);
+      }
+    }
+
+    document.getElementById('btn-abrir').addEventListener('click', function() {
+      document.getElementById('intro-box').style.display = 'none';
+      document.getElementById('letter-container').style.display = 'block';
+      soltarConfete();
+    });
+
+    document.getElementById('btn-confete').addEventListener('click', soltarConfete);
+  </script>
+</body>
+</html>
